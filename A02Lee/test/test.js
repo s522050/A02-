@@ -27,8 +27,9 @@
 //throws(function [, expected ] [, message ]): Test if a callback throws an exception, and optionally compare the thrown error;
 
 QUnit.test('Testing calculate function with several sets of inputs', function (assert) {
-    assert.equals(calculate(50,10,2), 22.5,"afasdff22.5", 'Tested with two relatively small positive numbers');
-    
-    
+    assert.equal(calculate(50,10,2), 22.5, 'Tested with two relatively small positive numbers');
+    assert.throws(function () {calculate(-1,10,-5); }, /Value shouldn't be 0 or negative value!/, 'Passing in netagive value correctly raises an Error');    
+    assert.throws(function () {calculate(null,null,null); }, /Value shouldn't be 0 or negative value!/, 'Passing in null correctly raises an Error');
+    assert.throws(function () {calculate("Test","5",1); }, /Value should be a number!/, 'Passing in a string correctly raises an Error');    
 });
 
